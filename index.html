@@ -1,0 +1,29 @@
+﻿<html>
+  <head>
+    <title>Chat App</title>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="public/css/style.css" rel="stylesheet" />
+    <base href="/">
+    <!-- Load libraries -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+      <script src="node_modules/zone.js/dist/zone.js"></script>
+      <script src="node_modules/reflect-metadata/Reflect.js"></script>
+      <script src="node_modules/systemjs/dist/system.src.js"></script>
+      <script src="node_modules/jquery/dist/jquery.js"></script>
+      <script src="systemjs.config.js"></script>
+      <script src="node_modules/socket.io-client/socket.io.js"></script>
+      <!--<script src="/socket.io/socket.io.js"></script>-->
+    <script>
+      //Client Code(Angular2)
+        System.import('client').catch(function (err) {
+            console.error(err);
+        });
+    </script>
+  </head>
+  <!-- Display the application -->
+  <body>
+    <sd-app><img src="loading.gif" width="32" height="32" />Loading...</sd-app>
+  </body>
+</html>

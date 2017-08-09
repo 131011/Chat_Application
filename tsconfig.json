@@ -1,0 +1,26 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "system", //commonjs
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": false,
+        "noImplicitAny": false
+    },
+    "exclude": [
+    "node_modules",
+    "client",
+    "typings/index.d.ts",
+    "typings/modules",
+    "server",
+    "systemjs.config.js",
+    "definitions",
+    "packages/*/node_modules",
+    "packages/*/definitions"
+   ],
+    
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

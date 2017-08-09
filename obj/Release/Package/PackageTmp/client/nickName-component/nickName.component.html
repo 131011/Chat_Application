@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="card card-container">
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <span id="status" class="status"></span>
+            <input type="text" id="nickname" class="form-control" minlength="1" maxlength="20" #nickname placeholder="Nickname" (keyup)="addNickname($event, nickname)" autocomplete="off" value="" required autofocus>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="submit(nickname)">Sign In</button>
+        </form><!-- /form -->
+        <div *ngIf="suggest">
+            <span class="forgot-password">
+                Suggestions:
+            </span>
+            <div class="forgot-password" *ngFor="let name of queries">{{name}}</div>
+        </div>
+    </div><!-- /card-container -->
+</div><!-- /container -->
+

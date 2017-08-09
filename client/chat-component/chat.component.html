@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>Chat App</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body *ngIf="userEntry">
+    <div *ngIf="!sidebar">
+        <button class="navbar-brand menu" (click)="openSidebar()">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div *ngIf="sidebar" class="sidebar">
+        <button type="button" class="close" aria-label="Close" (click)="closeSidebar()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>
+            <div>
+            <br/>
+            <h4>Connected Users</h4>
+            <div class="funkyradio">
+                <div class="funkyradio-primary">
+                    <input type="radio" name="clientsNameList" id="all" 
+                           [attr.checked]="selectedUser == 'ALL' ? 'checked' : null"
+                           (change)="updateCheckedOptions($event,'ALL')"/>
+                    <label for="all">All</label>
+                </div>
+
+                <div *ngFor="let name of clientsNameList">
+                    <div class="funkyradio-info" *ngIf="name != currentUser">
+                        <input type="radio" name="clientsNameList" [id]="name" 
+                               [attr.checked]="selectedUser == name ? 'checked' : null"
+                               (change)="updateCheckedOptions($event,name)" />
+                        <label [attr.for]="name">{{name.slice(0, -2)}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="chat_window">
+        <div class="top_menu">
+            <div class="buttons">
+                <h5>Chat</h5>               
+            </div>
+            <div class="title"><h5 class="user">{{currentUser.slice(0, -2)}}</h5></div>
+        </div>
+
+        <div class="top_menu">
+            <div *ngIf="typingFlag">
+                <h6 class="title" id="typings"></h6>
+            </div>
+            <div class="title" *ngIf="resFlag">
+                <i class="fa fa-clock-o"></i> Sending Message
+            </div>
+        </div>
+       
+        <ul id="messages" class="message"></ul>
+        <div class="bottom_wrapper clearfix">
+            <div class="message_input_wrapper">
+                <textarea class="message_input" id="message-boxID" #messageBox placeholder="Type your message here..."
+                          (keyup)="sendMessageOnEnter($event, messageBox)" (keydown)="update()"
+                          autocomplete="off" value="" type="text" autofocus required></textarea>
+            </div>
+            <div class="send_message" (click)="sendMessage(messageBox)">
+                <div class="icon"></div>
+                <div class="text">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text_wrapper">
+        <div class="alert alert-info" *ngIf="newUser" role="alert">
+            <button type="button" class="close" aria-label="Close"  (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{newUserName}} </strong> joined Chat!
+        </div>
+        <div class="alert alert-warning"  *ngIf="exitedUser" role="alert">
+            <button type="button" class="close" aria-label="Close"  (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>   {{exitedUserName}} </strong> left the Chat!
+        </div>
+    </div>
+
+</body>
+</html>
